@@ -2,7 +2,7 @@
 <html lang="ja" ng-app="MyApp">
 <head>
     <meta charset="UTF-8">
-    <title>Shunsuke &amp; Chihiro Wedding</title>
+    <title>Random15 - Shunsuke &amp; Chihiro Wedding -</title>
     <link rel="stylesheet" type="text/css" href="asset/reset.css">
     <link rel="stylesheet" type="text/css" href="asset/style.css">
     <script src="bower_components/angular/angular.min.js" type="text/javascript" charset="utf-8"></script>
@@ -10,16 +10,19 @@
     <script src="bower_components/angular-resource/angular-resource.min.js" type="text/javascript" charset="utf-8"></script>
     <script src="asset/script.js" type="text/javascript" charset="utf-8"></script>
 </head>
-<body>
-    <slider></slider>
-    <div class="sidebar" ng-if="dataLoaded">
-        <hr />
-        <p>只今の投稿枚数</p>
-        <p class="nowCnt" ng-bind="images.length"></p>
-        <hr />
-        <p>投稿はこちら</p>
-        <p><img src="asset/dropbox.gif" /></p>
-        <hr />
+<body ng-controller="randomController">
+    <div class="start" ng-if="start">
+        <img src="asset/S__21602315.jpg" ng-click="onStart()" />
+        <p>『さあ、幸運な15人を発表するよ。』</p>
+    </div>
+
+    <div class="loadingText" ng-if="loading">抽選中...</div>
+
+    <div class="random" ng-if="!start">
+        <p ng-repeat="image in images">
+            <span ng-bind="image.title" ng-show="image.visible"></span>
+            <img ng-src="contest/Random15/{{image.src}}" ng-show="image.visible" />
+        </p>
     </div>
 </body>
 </html>
